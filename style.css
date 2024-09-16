@@ -1,0 +1,90 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.titulo {
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#cartas-jugador {
+  display: flex;
+  gap: 10px;
+}
+
+.carta {
+  width: 60px;
+  height: 90px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-size: 24px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.carta .palo {
+  font-size: 28px;
+}
+
+.carta.roja .palo {
+  color: red;
+}
+
+.botones {
+  margin: 10px;
+  padding: 10px;
+}
+
+.cartasJugador {
+  margin: 10px;
+  padding: 10px;
+}
+
+#cartas-cpu {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  margin: 10px;
+  padding: 10px;
+}
+
+#form-apuesta {
+  margin-left: 20px;
+  gap: 15px;
+}
+
+#form-apuesta div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.boton-apostar-formulario {
+  margin-left: 30px;
+}
+
+#tituloDineroJugador {
+  margin-left: 20px;
+  margin-bottom: 3px;
+}
+
+#tituloPozoJuego {
+  margin-left: 20px;
+}
+
+#titulo-jugador {
+  margin-left: 20px;
+}
+
+#nuevaMano {
+  margin-left: 20px;
+}
+
+#cpuDealer{
+  margin-left: 20px;
+}
