@@ -1,4 +1,4 @@
-// cspell: ignore boton, Swal
+// cspell: ignore boton, Swal, Póker
 
 document
   .getElementById("boton-verRespuestasCPU")
@@ -80,9 +80,19 @@ document
       pozo += valorApuestaCPU;
       actualizarPozo();
     }
+    if (manoCPU.tipo === "Escalera Real" || manoCPU.tipo === "Póker") {
+      let valorApuestaCPU = 10;
+      pozo += valorApuestaCPU;
+      actualizarPozo();
+    }
   });
 
-// terminar respuestas del cpu
-// ver lo del dealer q funcione como actualizar pozo
-// cambiar cartas
-// segunda apuesta
+// el Dealer es la cpu
+// 1ra apuesta: Jugador, apostar o ver sin apostar
+// respuesta del CPU: subir apuesta, pagar o retirarse
+// cambio de cartas
+// 2da apuesta: Jugador, apostar o ver sin apostar
+// respuesta del CPU: subir apuesta, pagar o retirarse
+// comprobar quien ganó
+// mostrar resultado
+// guardar resultados para ver quien gano mas
