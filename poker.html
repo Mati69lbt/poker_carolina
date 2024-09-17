@@ -9,61 +9,72 @@
     <title>Poker</title>
   </head>
   <body>
+    <!-- Navbar -->
     <h1 class="titulo">Juguemos unas manos al Poker</h1>
     <hr />
     <button class="boton-jugar" id="boton-jugar">Jugar</button>
     <br />
-    <h4 style="display: none" id="tituloDineroJugador">
-      Dinero Jugador: U$D <span id="dineroJugador"></span>
-    </h4>
-    <br />
-    <h4 style="display: none" id="tituloPozoJuego">
-      Pozo hasta el momento: U$D
-      <span id="pozoJuego"></span>
-    </h4>
-    <br />
-    <span id="cpuDealer" style="display: none">La CPU es Dealer</span>
-    <br />
-    <h3 id="titulo-jugador" style="display: none">
-      Jugador <span id="dealer" style="display: none">(Dealer)</span>
-    </h3>
+    <!-- ----------- -->
+    <div class="container">
+      <!-- Panel de información del Juego -->
+      <h4 style="display: none" id="tituloDineroJugador">
+        Dinero Jugador: U$D <span id="dineroJugador"></span>
+      </h4>
+      <br />
+      <h4 style="display: none" id="tituloPozoJuego">
+        Pozo hasta el momento: U$D
+        <span id="pozoJuego"></span>
+      </h4>
+      <br />
+      <span id="cpuDealer" style="display: none">La CPU es Dealer</span>
+      <!-- ----------- -->
+      <br />
+      <!-- Cartas Jugador -->
+      <h3 id="titulo-jugador" style="display: none">
+        Jugador <span id="dealer" style="display: none">(Dealer)</span>
+      </h3>
+      <div id="cartas-jugador" class="cartasJugador"></div>
+      <!-- ----------- -->
+      <!-- Cartas CPU -->
+      <h3 id="titulo-cpu" style="display: none">Computadora</h3>
+      <div id="cartas-cpu" class="cartasCpu" style="display: none"></div>
+      <!-- ----------- -->
+      <!-- Formulario Apuestas -->
+      <form id="form-apuesta" style="display: none">
+        <div>
+          <input type="radio" id="option2" name="option" value="2" />
+          <label for="option2">2</label>
+        </div>
+        <div>
+          <input type="radio" id="option5" name="option" value="5" />
+          <label for="option5">5</label>
+        </div>
+        <div>
+          <input type="radio" id="option8" name="option" value="8" />
+          <label for="option8">8</label>
+        </div>
+        <div>
+          <input type="radio" id="option10" name="option" value="10" />
+          <label for="option10">10</label>
+        </div>
 
-    <div id="cartas-jugador" class="cartasJugador"></div>
-    <h3 id="titulo-cpu" style="display: none">Computadora</h3>
-    <div id="cartas-cpu" class="cartasCpu" style="display: none"></div>
+        <button type="submit" class="boton-apostar-formulario">Apostar</button>
+      </form>
+      <!-- ----------- -->
 
-    <form id="form-apuesta" style="display: none">
-      <div>
-        <input type="radio" id="option2" name="option" value="2" />
-        <label for="option2">2</label>
+      <div class="botones">
+        <button id="boton-apostar" style="display: none">Apostar</button>
+        <button id="boton-ver-sin-apostar" style="display: none">
+          Ver sin Apostar
+        </button>
+        <button id="boton-irse" style="display: none">Irse al maso</button>
+        <button id="boton-verRespuestasCPU" style="display: none">
+          Ver respuestas del CPU
+        </button>
+        <button id="boton-cambiar" style="display: none">Cambiar Cartas</button>
       </div>
-      <div>
-        <input type="radio" id="option5" name="option" value="5" />
-        <label for="option5">5</label>
-      </div>
-      <div>
-        <input type="radio" id="option8" name="option" value="8" />
-        <label for="option8">8</label>
-      </div>
-      <div>
-        <input type="radio" id="option10" name="option" value="10" />
-        <label for="option10">10</label>
-      </div>
-
-      <button type="submit" class="boton-apostar-formulario">Apostar</button>
-    </form>
-
-    <div class="botones">
-      <button id="boton-apostar" style="display: none">Apostar</button>
-      <button id="boton-ver-sin-apostar" style="display: none">
-        Ver sin Apostar
-      </button>
-      <button id="boton-irse" style="display: none">Irse al maso</button>
-      <button id="boton-verRespuestasCPU" style="display: none">
-        Ver respuestas del CPU
-      </button>
+      <button id="nuevaMano" style="display: none">Nueva Mano</button>
     </div>
-    <button id="nuevaMano" style="display: none">Nueva Mano</button>
     <script src="poker.js"></script>
     <script src="mazo.js"></script>
     <script src="primera_Apuesta.js"></script>

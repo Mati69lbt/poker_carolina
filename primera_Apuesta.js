@@ -41,4 +41,8 @@ document.getElementById("form-apuesta").addEventListener("submit", (event) => {
     "inline-block";
 });
 
-const enviarValorApuesta = () => valorApuesta;
+document
+  .getElementById("boton-ver-sin-apostar")
+  .addEventListener("click", () => {
+    valorApuesta = 0;
+  });

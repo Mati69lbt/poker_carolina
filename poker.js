@@ -6,9 +6,11 @@ const comenzarApuesta = () => {
   if (contadorManos % 2 !== 0) {
     // Mano impar: el jugador apuesta primero
     document.getElementById("cpuDealer").style.display = "inline-block";
+    document.getElementById("dealer").style.display = "none";
   } else {
     // Mano par: la CPU apuesta primero
-    document.getElementById("dealer").style.display = "none";
+    document.getElementById("dealer").style.display = "inline-block";
+    document.getElementById("cpuDealer").style.display = "none";
     document.getElementById("boton-apostar").style.display = "none";
     document.getElementById("boton-ver-sin-apostar").style.display = "none";
     document.getElementById("boton-verRespuestasCPU").style.display =
@@ -25,6 +27,10 @@ let pozo = 0;
 
 console.log(pozo);
 
+function actualizarDineroJugador() {
+  Dinero_Jugador.innerText = DineroJugador;
+}
+
 function actualizarPozo() {
   document.getElementById("pozoJuego").innerText = pozo;
 }
@@ -36,7 +42,7 @@ let cartasDelJugador = [];
 let cartasCPU = [];
 
 document.getElementById("boton-jugar").addEventListener("click", () => {
-  const { cartasJugador, cartasMaquina } = Mazo();
+  const { cartasJugador, cartasMaquina } = Mazo(5);
 
   cartasDelJugador = cartasJugador;
   cartasCPU = cartasMaquina;
@@ -80,7 +86,7 @@ document.getElementById("boton-irse").addEventListener("click", () => {
 });
 
 document.getElementById("nuevaMano").addEventListener("click", () => {
-  const { cartasJugador, cartasMaquina } = Mazo();
+  const { cartasJugador, cartasMaquina } = Mazo(5);
 
   mostrarCartas(cartasJugador, "cartas-jugador");
 

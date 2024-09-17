@@ -1,3 +1,5 @@
+/* cspell: ignore boton */
+
 body {
   font-family: Arial, sans-serif;
 }
@@ -25,6 +27,11 @@ body {
   background-color: white;
   font-size: 24px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.carta.seleccionada {
+  border: 3px solid red;
 }
 
 .carta .palo {
@@ -40,22 +47,19 @@ body {
   padding: 10px;
 }
 
-.cartasJugador {
-  margin: 10px;
-  padding: 10px;
-}
-
 #cartas-cpu {
   display: flex;
   gap: 10px;
   margin-top: 20px;
-  margin: 10px;
-  padding: 10px;
+}
+
+.container {
+  margin-left: 30px;
 }
 
 #form-apuesta {
-  margin-left: 20px;
   gap: 15px;
+  padding-top: 10px;
 }
 
 #form-apuesta div {
@@ -66,25 +70,4 @@ body {
 
 .boton-apostar-formulario {
   margin-left: 30px;
-}
-
-#tituloDineroJugador {
-  margin-left: 20px;
-  margin-bottom: 3px;
-}
-
-#tituloPozoJuego {
-  margin-left: 20px;
-}
-
-#titulo-jugador {
-  margin-left: 20px;
-}
-
-#nuevaMano {
-  margin-left: 20px;
-}
-
-#cpuDealer{
-  margin-left: 20px;
 }

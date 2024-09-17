@@ -10,7 +10,6 @@ const valorCarta = (carta) => {
 };
 
 const evaluarMano = (mano) => {
-  
   const palosArray = [
     { nombre: "Corazón", emoji: "♥" },
     { nombre: "Trébol", emoji: "♣" },
@@ -22,9 +21,9 @@ const evaluarMano = (mano) => {
     const paloEncontrado = palosArray.find((p) => p.emoji === carta.palo);
     const nombrePalo = paloEncontrado ? paloEncontrado.nombre : carta.palo;
     return `${carta.carta} - ${nombrePalo}`;
-  });  
+  });
 
-  const valores = cartasConNombre.map((carta) => carta.split(" - ")[0]); 
+  const valores = cartasConNombre.map((carta) => carta.split(" - ")[0]);
 
   const palos = cartasConNombre.map((carta) => carta.split(" - ")[1]);
 
@@ -43,9 +42,12 @@ const evaluarMano = (mano) => {
   const esColor = palos.every((palo) => palo === palos[0]);
   const esEscalera =
     valores.length === 5 &&
-    valorCarta(cartasConNombre[4]) - valorCarta(cartasConNombre[0]) === 4;
+    valores
+      .map(Number)
+      .sort((a, b) => a - b)
+      .every((val, i, arr) => i === 0 || val === arr[i - 1] + 1);
   const esEscaleraReal =
-    esEscalera && valores.includes("A") && valores.includes("K");
+    esEscalera && valores.sort((a, b) => a - b).join(",") === "10,11,12,13,14";
 
   if (esColor && esEscaleraReal)
     return { tipo: "Escalera Real", cartas: formatearCartas(cartasConNombre) };
