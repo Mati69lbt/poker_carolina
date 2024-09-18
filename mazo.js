@@ -114,14 +114,14 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
 
   console.log(cartasAdicionalesJyCpu);
 
-   console.log(cartasAdicionalesJyCpu.length);
+  console.log(cartasAdicionalesJyCpu.length);
 
-   const nuevasCartas = cartasAdicionalesJyCpu.splice(
-     5,
-     cartasSeleccionadas.length
-   );
+  const nuevasCartas = cartasAdicionalesJyCpu.splice(
+    5,
+    cartasSeleccionadas.length
+  );
 
-   console.log(cartasAdicionalesJyCpu.length); 
+  console.log(cartasAdicionalesJyCpu.length);
 
   const contenedor = document.getElementById("cartas-jugador");
   const cartasJugadorActuales = [...contenedor.querySelectorAll(".carta")];
@@ -160,6 +160,11 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
 
   // Ocultar el botón "Cambiar" después de la acción
   document.getElementById("boton-cambiar").style.display = "none";
+
+  document.getElementById("boton-NuevaApuesta").style.display = "inline-block";
+  document.getElementById("boton-apostar").style.display = "none";
+  document.getElementById("boton-ver-sin-apostar").style.display =
+    "inline-block";
 
   // Aquí ya tienes actualizadas todas las cartas del jugador (tanto las seleccionadas como las no seleccionadas)
   console.log(cartasJugadorActualizadas);

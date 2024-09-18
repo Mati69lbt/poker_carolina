@@ -1,7 +1,10 @@
-//cspell: ignore boton, Póker, póker
-// analizar q cartas tiene
+//cspell: ignore boton, Póker, póker,  span_seleccionCartas
+
+let cartasCPU_Nuevas = [];
 
 document.getElementById("boton-cambiar").addEventListener("click", () => {
+  document.getElementById("span_seleccionCartas").style.display = "none";
+  
   console.log(cartasCPU);
 
   console.log(cartasAdicionalesJyCpu);
@@ -95,7 +98,7 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
 
   console.log(cartasCPU_Transformadas);
 
-  const cartasCPU_Nuevas = cartasCPU_Transformadas.concat(nuevasCartas);
+  cartasCPU_Nuevas = cartasCPU_Transformadas.concat(nuevasCartas);
 
   console.log(cartasCPU_Nuevas);
 

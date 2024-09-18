@@ -1,4 +1,4 @@
-// cspell: ignore boton, Swal, Póker
+// cspell: ignore boton, Swal, Póker, span_seleccionCartas
 
 document
   .getElementById("boton-verRespuestasCPU")
@@ -18,8 +18,11 @@ document
       ) {
         seleccionarCartas();
         Swal.fire("La computadora sigue jugando, pero no apuesta");
+
         document.getElementById("boton-verRespuestasCPU").style.display =
           "none";
+        document.getElementById("span_seleccionCartas").style.display =
+          "inline-block";
         document.getElementById("tituloPozoJuego").style.display =
           "inline-block";
         document.getElementById("boton-cambiar").style.display = "inline-block";
@@ -40,6 +43,8 @@ document
       Swal.fire("La computadora sigue jugando");
       document.getElementById("boton-verRespuestasCPU").style.display = "none";
       document.getElementById("boton-cambiar").style.display = "inline-block";
+      document.getElementById("span_seleccionCartas").style.display =
+        "inline-block";
     }
 
     if (manoCPU.tipo == "Carta Alta" && valorApuesta !== 0) {
@@ -69,6 +74,8 @@ document
       seleccionarCartas();
       Swal.fire("La computadora pagó tu apuesta");
       document.getElementById("boton-verRespuestasCPU").style.display = "none";
+       document.getElementById("span_seleccionCartas").style.display =
+         "inline-block";
       document.getElementById("boton-cambiar").style.display = "inline-block";
       let valorApuestaCPU = valorApuesta;
       pozo += valorApuestaCPU;
@@ -81,12 +88,4 @@ document
     }
   });
 
-// el Dealer es la cpu
-// 1ra apuesta: Jugador, apostar o ver sin apostar
-// respuesta del CPU: subir apuesta, pagar o retirarse
-// cambio de cartas
-// 2da apuesta: Jugador, apostar o ver sin apostar
-// respuesta del CPU: subir apuesta, pagar o retirarse
-// comprobar quien ganó
-// mostrar resultado
-// guardar resultados para ver quien gano mas
+

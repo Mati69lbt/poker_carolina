@@ -17,6 +17,7 @@
     <div class="container">
       <!-- Panel de información del Juego -->
       <button class="boton-jugar" id="boton-jugar">Jugar</button>
+
       <h4 style="display: none" id="tituloDineroJugador">
         Dinero Jugador: U$D <span id="dineroJugador"></span>
       </h4>
@@ -33,6 +34,10 @@
       <h3 id="titulo-jugador" style="display: none">
         Jugador <span id="dealer" style="display: none">(Dealer)</span>
       </h3>
+      <br />
+      <span id="span_seleccionCartas" style="display: none">
+        (Selecciona las cartas para cambiar)
+      </span>
       <div id="cartas-jugador" class="cartasJugador"></div>
       <!-- ----------- -->
       <!-- Cartas CPU -->
@@ -63,6 +68,7 @@
       <!-- ----------- -->
 
       <div class="botones">
+        <button id="boton-NuevaApuesta" style="display: none">Nueva Apuesta</button>
         <button id="boton-apostar" style="display: none">Apostar</button>
         <button id="boton-ver-sin-apostar" style="display: none">
           Ver sin Apostar

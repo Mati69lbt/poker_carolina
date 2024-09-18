@@ -50,7 +50,6 @@ body {
 #cartas-cpu {
   display: flex;
   gap: 10px;
-  margin-top: 20px;
 }
 
 .container {
@@ -70,4 +69,8 @@ body {
 
 .boton-apostar-formulario {
   margin-left: 30px;
+}
+
+#span_seleccionCartas {
+  color: rgb(84, 139, 3);
 }

@@ -75,7 +75,9 @@ document
   });
 
 document.getElementById("boton-irse").addEventListener("click", () => {
-  mostrarCartas(cartasCPU, "cartas-cpu");
+  console.log(cartasCPU_Nuevas);
+
+  mostrarCartas(cartasCPU_Nuevas, "cartas-cpu");
   document.getElementById("titulo-cpu").style.display = "inline-block";
   document.getElementById("nuevaMano").style.display = "inline-block";
   document.getElementById("cartas-cpu").style.display = "flex";
@@ -106,4 +108,9 @@ document.getElementById("nuevaMano").addEventListener("click", () => {
   contadorManos++;
   console.log(contadorManos);
   comenzarApuesta();
+});
+
+document.getElementById("boton-NuevaApuesta").addEventListener("click", () => {
+  document.getElementById("form-apuesta").style.display = "flex";
+  document.getElementById("boton-NuevaApuesta").style.display = "none";
 });
