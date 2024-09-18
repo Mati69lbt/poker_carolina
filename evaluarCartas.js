@@ -35,10 +35,6 @@ const evaluarMano = (mano) => {
   }
   const maxValor = Math.max(...Object.values(conteo));
 
-  const formatearCartas = (cartas) => {
-    return cartas.map((carta) => carta.replace(" - ", " de ")).join(", ");
-  };
-
   const esColor = palos.every((palo) => palo === palos[0]);
   const esEscalera =
     valores.length === 5 &&
@@ -49,21 +45,72 @@ const evaluarMano = (mano) => {
   const esEscaleraReal =
     esEscalera && valores.sort((a, b) => a - b).join(",") === "10,11,12,13,14";
 
+  const valorJugada = Object.keys(conteo).find(
+    (valor) => conteo[valor] === maxValor
+  );
+
   if (esColor && esEscaleraReal)
-    return { tipo: "Escalera Real", cartas: formatearCartas(cartasConNombre) };
+    return {
+      tipo: "Escalera Real",
+      juego: "Escalera Real",
+      cartas: cartasConNombre,
+      conteo,
+    };
   if (maxValor === 4)
-    return { tipo: "Póker", cartas: formatearCartas(cartasConNombre) };
+    return {
+      tipo: "Poker",
+      juego: `Póker de ${valorJugada}`,
+      cartas: cartasConNombre,
+      conteo,
+    };
   if (maxValor === 3 && Object.keys(conteo).length === 2)
-    return { tipo: "Full", cartas: formatearCartas(cartasConNombre) };
+    return {
+      tipo: "Full",
+      juego: `Full de ${valorJugada}`,
+      cartas: cartasConNombre,
+      conteo,
+    };
   if (esColor)
-    return { tipo: "Color", cartas: formatearCartas(cartasConNombre) };
+    return {
+      tipo: "Color",
+      juego: `Color de ${palos[0]}`,
+      cartas: cartasConNombre,
+      conteo,
+    };
   if (esEscalera)
-    return { tipo: "Escalera", cartas: formatearCartas(cartasConNombre) };
+    return {
+      tipo: "Escalera",
+      juego: `Escalera`,
+      cartas: cartasConNombre,
+      conteo,
+    };
   if (maxValor === 3)
-    return { tipo: "Pierna", cartas: formatearCartas(cartasConNombre) };
+    return {
+      tipo: "Pierna",
+      juego: `Pierna de ${valorJugada}`,
+      cartas: cartasConNombre,
+      conteo,
+    };
   if (maxValor === 2 && Object.keys(conteo).length === 3)
-    return { tipo: "Doble Par", cartas: formatearCartas(cartasConNombre) };
+    return {
+      tipo: "Doble Par",
+      juego: `Doble Par de ${Object.keys(conteo)
+        .filter((valor) => conteo[valor] === 2)
+        .join(" y ")}`,
+      cartas: cartasConNombre,
+      conteo,
+    };
   if (maxValor === 2)
-    return { tipo: "Par", cartas: formatearCartas(cartasConNombre) };
-  return { tipo: "Carta Alta", cartas: formatearCartas(cartasConNombre) };
+    return {
+      tipo: "Par",
+      juego: `Par de ${valorJugada}`,
+      cartas: cartasConNombre,
+      conteo,
+    };
+  return {
+    tipo: "Carta Alta",
+    juego: "Carta Alta",
+    cartas: cartasConNombre,
+    conteo,
+  };
 };

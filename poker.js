@@ -25,8 +25,6 @@ Dinero_Jugador.innerText = DineroJugador;
 
 let pozo = 0;
 
-console.log(pozo);
-
 function actualizarDineroJugador() {
   Dinero_Jugador.innerText = DineroJugador;
 }

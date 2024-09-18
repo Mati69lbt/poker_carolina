@@ -4,7 +4,6 @@ let valorApuesta;
 
 document.getElementById("form-apuesta").addEventListener("submit", (event) => {
   event.preventDefault(); // Evitar que se recargue la página
-  console.log(cartasCPU);
 
   // Obtener la opción seleccionada
   const apuestaSeleccionada = document.querySelector(
@@ -45,4 +44,5 @@ document
   .getElementById("boton-ver-sin-apostar")
   .addEventListener("click", () => {
     valorApuesta = 0;
+    document.getElementById("form-apuesta").style.display = "none";
   });

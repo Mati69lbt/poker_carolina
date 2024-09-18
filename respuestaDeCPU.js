@@ -6,15 +6,9 @@ document
     console.log(cartasCPU);
 
     const manoCPU = evaluarMano(cartasCPU);
-
-    valorApuesta == undefined ? (valorApuesta = 0) : valorApuesta;
-
     console.log(manoCPU);
 
-    console.log(manoCPU.tipo);
-    console.log(valorApuesta);
-    console.log(DineroJugador);
-    console.log(contadorManos);
+    valorApuesta == undefined ? (valorApuesta = 0) : valorApuesta;
 
     if (contadorManos % 2 == 0) {
       if (
