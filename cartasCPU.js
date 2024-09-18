@@ -13,10 +13,18 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
 
   // Verificamos el tipo de juego para determinar cuántas cartas mantener
   if (tipo.includes("Par")) {
-    const valorClave = Object.keys(conteo).find((valor) => conteo[valor] === 2);
-    cartasQueQuedan = mano.filter(
-      (carta) => carta.split(" - ")[0] === valorClave
-    );
+    const pares = Object.keys(conteo).filter((valor) => conteo[valor] === 2);
+    if (pares.length === 2) {     
+      tipo = "Doble Par";
+      cartasQueQuedan = mano.filter((carta) =>
+        pares.includes(carta.split(" - ")[0])
+      );
+    } else {      
+      const valorClave = pares[0];
+      cartasQueQuedan = mano.filter(
+        (carta) => carta.split(" - ")[0] === valorClave
+      );
+    }
   } else if (tipo.includes("Pierna")) {
     const valorClave = Object.keys(conteo).find((valor) => conteo[valor] === 3);
     cartasQueQuedan = mano.filter(
@@ -55,13 +63,13 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
   function transformarCartas(cartas) {
     return cartas.map((carta) => {
       const [valorCarta, nombrePalo] = carta.split(" - ");
-      
+
       const palo = palos.find((p) => p.nombre === nombrePalo);
 
       return {
         carta: valorCarta,
-        palo: palo.emoji, 
-        color: palo.color, 
+        palo: palo.emoji,
+        color: palo.color,
       };
     });
   }

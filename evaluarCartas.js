@@ -63,13 +63,18 @@ const evaluarMano = (mano) => {
       cartas: cartasConNombre,
       conteo,
     };
-  if (maxValor === 3 && Object.keys(conteo).length === 2)
+  if (maxValor === 3 && Object.keys(conteo).length === 2) {
+    const valorPierna = Object.keys(conteo).find(
+      (valor) => conteo[valor] === 3
+    );
+    const valorPar = Object.keys(conteo).find((valor) => conteo[valor] === 2);
     return {
       tipo: "Full",
-      juego: `Full de ${valorJugada}`,
+      juego: `Full, pierna de ${valorPierna} con par de ${valorPar}`,
       cartas: cartasConNombre,
       conteo,
     };
+  }
   if (esColor)
     return {
       tipo: "Color",

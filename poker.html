@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="cardgame.ico" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://console.ninja/console-ninja.js"></script>
     <title>Poker</title>
@@ -68,7 +69,9 @@
       <!-- ----------- -->
 
       <div class="botones">
-        <button id="boton-NuevaApuesta" style="display: none">Nueva Apuesta</button>
+        <button id="boton-NuevaApuesta" style="display: none">
+          Nueva Apuesta
+        </button>
         <button id="boton-apostar" style="display: none">Apostar</button>
         <button id="boton-ver-sin-apostar" style="display: none">
           Ver sin Apostar
@@ -77,7 +80,14 @@
         <button id="boton-verRespuestasCPU" style="display: none">
           Ver respuestas del CPU
         </button>
+        <button id="boton-Respuesta_CPU" style="display: none">
+          Respuesta CPU
+        </button>
         <button id="boton-cambiar" style="display: none">Cambiar Cartas</button>
+        <button id="boton-AceptarApuesta" style="display: none">
+          Aceptar Apuesta
+        </button>
+        <button id="boton-ganador" style="display: none">¿Quien Gano?</button>
       </div>
       <button id="nuevaMano" style="display: none">Nueva Mano</button>
     </div>
@@ -87,5 +97,7 @@
     <script src="respuestaDeCPU.js"></script>
     <script src="evaluarCartas.js"></script>
     <script src="cartasCPU.js"></script>
+    <script src="segunda_Apuesta.js"></script>
+    <script src="ganador.js"></script>
   </body>
 </html>

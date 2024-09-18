@@ -43,6 +43,9 @@ let cartasAdicionalesJyCpu = [];
 document.getElementById("boton-jugar").addEventListener("click", () => {
   const { cartasJugador, cartasMaquina, cartasAdicionales } = Mazo();
 
+  const manoCPU = evaluarMano(cartasMaquina);
+  console.log(manoCPU);
+
   cartasDelJugador = cartasJugador;
   cartasCPU = cartasMaquina;
   cartasAdicionalesJyCpu = cartasAdicionales;
@@ -75,8 +78,6 @@ document
   });
 
 document.getElementById("boton-irse").addEventListener("click", () => {
-  console.log(cartasCPU_Nuevas);
-
   mostrarCartas(cartasCPU_Nuevas, "cartas-cpu");
   document.getElementById("titulo-cpu").style.display = "inline-block";
   document.getElementById("nuevaMano").style.display = "inline-block";
@@ -113,4 +114,27 @@ document.getElementById("nuevaMano").addEventListener("click", () => {
 document.getElementById("boton-NuevaApuesta").addEventListener("click", () => {
   document.getElementById("form-apuesta").style.display = "flex";
   document.getElementById("boton-NuevaApuesta").style.display = "none";
+  document.getElementById("boton-verRespuestasCPU").style.display = "none";
+
+  const botonApostar = document.querySelector(".boton-apostar-formulario");
+
+  // Cambiar el texto
+  botonApostar.innerText = "Ultima Apuesta";
+
+  // Cambiar el id
+  botonApostar.setAttribute("id", "ultima-apuesta");
+
+  document.getElementById("ultima-apuesta").addEventListener("click", () => {
+    document.getElementById("boton-Respuesta_CPU").style.display =
+      "inline-block";
+    document.getElementById("boton-verRespuestasCPU").style.display = "none";
+
+    const botonApostar = document.getElementById("ultima-apuesta");
+
+    console.log(botonApostar.id);
+
+    botonApostar.setAttribute("id", "boton-apostar-formulario");
+    console.log(botonApostar.id);
+  });
+  
 });

@@ -42,41 +42,32 @@ document.getElementById("form-apuesta").addEventListener("submit", (event) => {
       "inline-block";
     formularioUsado = true;
   } else {
-    document.querySelector(".boton-apostar-formulario").innerText =
-      "Ultima Apuesta";
-
-    const opciones = document.querySelectorAll('input[name="option"]');
-    opciones.forEach((opcion) => {
-      opcion.checked = false;
-    });
-
     const apuestaSeleccionada = document.querySelector(
       'input[name="option"]:checked'
     );
 
-    if (!apuestaSeleccionada) {     
+    if (!apuestaSeleccionada) {
       Swal.fire("Debes seleccionar una cantidad para apostar.");
       return;
     }
 
     valorApuesta = parseInt(apuestaSeleccionada.value);
-   
+
     if (DineroJugador < valorApuesta) {
       Swal.fire("No tienes suficiente dinero para hacer esa apuesta.");
       return;
     }
 
-   
-    DineroJugador -= valorApuesta;   
+    DineroJugador -= valorApuesta;
     pozo += valorApuesta;
     Dinero_Jugador.innerText = DineroJugador;
     pozo_Juego.innerText = pozo;
 
     document.getElementById("form-apuesta").style.display = "none";
     document.getElementById("boton-ver-sin-apostar").style.display = "none";
-    document.getElementById("boton-verRespuestasCPU").style.display =
-      "inline-block";
+    document.getElementById("boton-verRespuestasCPU").style.display = "none";
   }
+  
 });
 
 document

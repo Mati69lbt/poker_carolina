@@ -2,8 +2,7 @@
 
 document
   .getElementById("boton-verRespuestasCPU")
-  .addEventListener("click", () => {
-    console.log(cartasCPU);
+  .addEventListener("click", () => { 
 
     const manoCPU = evaluarMano(cartasCPU);
     console.log(manoCPU);
