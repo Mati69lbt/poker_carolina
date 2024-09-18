@@ -1,15 +1,17 @@
 //cspell: ignore boton, Póker, póker
 // analizar q cartas tiene
 
-
 document.getElementById("boton-cambiar").addEventListener("click", () => {
   console.log(cartasCPU);
+
+  console.log(cartasAdicionalesJyCpu);
 
   const manoCPU = evaluarMano(cartasCPU);
 
   console.log(manoCPU);
 
   let { tipo, conteo, cartas: mano } = manoCPU;
+
   console.log(tipo);
 
   let cartasQueQuedan = [];
@@ -58,10 +60,11 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
 
   console.log(cantCartasACambiar);
 
-  const { cartasMaquina: nuevasCartas, mazoCompleto } =
-    Mazo(cantCartasACambiar);
+  console.log(cartasAdicionalesJyCpu.length);
 
-  console.log(mazoCompleto.length);
+  const nuevasCartas = cartasAdicionalesJyCpu.splice(0, cantCartasACambiar);
+
+  console.log(cartasAdicionalesJyCpu.length);
 
   console.log("cartasQueQuedan:", cartasQueQuedan);
   console.log("nuevasCartas:", nuevasCartas);

@@ -1,6 +1,6 @@
 // cspell: ignore boton, Swal, deseleccionada, seleccionHabilitada
 
-const Mazo = (cantidadCartas) => {
+const Mazo = () => {
   const cartas = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
   const palos = [
     { nombre: "Corazón", emoji: "♥", color: "rojo" },
@@ -41,8 +41,9 @@ const Mazo = (cantidadCartas) => {
     return cartasRepartidas;
   };
 
-  let cartasJugador = repartirCartas(cantidadCartas, mazoCompleto);
-  let cartasMaquina = repartirCartas(cantidadCartas, mazoCompleto);
+  let cartasJugador = repartirCartas(5, mazoCompleto);
+  let cartasMaquina = repartirCartas(5, mazoCompleto);
+  let cartasAdicionales = repartirCartas(10, mazoCompleto);
 
   const ordenarCartas = (cartas) => {
     return cartas.sort((a, b) => valorCarta(b.carta) - valorCarta(a.carta));
@@ -51,7 +52,7 @@ const Mazo = (cantidadCartas) => {
   cartasJugador = ordenarCartas(cartasJugador);
   cartasMaquina = ordenarCartas(cartasMaquina);
 
-  return { cartasJugador, cartasMaquina, mazoCompleto };
+  return { cartasJugador, cartasMaquina, cartasAdicionales };
 };
 
 const mostrarCartas = (cartas, contenedorId) => {
@@ -111,7 +112,16 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
     return; // Salir si no hay cartas seleccionadas
   }
 
-  const { cartasJugador: nuevasCartas } = Mazo(cartasSeleccionadas.length);
+  console.log(cartasAdicionalesJyCpu);
+
+   console.log(cartasAdicionalesJyCpu.length);
+
+   const nuevasCartas = cartasAdicionalesJyCpu.splice(
+     5,
+     cartasSeleccionadas.length
+   );
+
+   console.log(cartasAdicionalesJyCpu.length); 
 
   const contenedor = document.getElementById("cartas-jugador");
   const cartasJugadorActuales = [...contenedor.querySelectorAll(".carta")];
@@ -122,7 +132,7 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
       cartasJugadorActualizadas[index] = {
         carta: carta.querySelector("div").textContent,
         palo: carta.querySelector(".palo").textContent,
-        color: carta.classList.contains("roja") ? "rojo" : "negro",
+        color: carta.classList.contains("rojo") ? "rojo" : "negro",
       };
     }
   });
@@ -156,4 +166,3 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
   const a = evaluarMano(cartasJugadorActualizadas);
   console.log(a);
 });
-

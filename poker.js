@@ -38,12 +38,14 @@ pozo_Juego.innerText = pozo;
 
 let cartasDelJugador = [];
 let cartasCPU = [];
+let cartasAdicionalesJyCpu = [];
 
 document.getElementById("boton-jugar").addEventListener("click", () => {
-  const { cartasJugador, cartasMaquina } = Mazo(5);
+  const { cartasJugador, cartasMaquina, cartasAdicionales } = Mazo();
 
   cartasDelJugador = cartasJugador;
   cartasCPU = cartasMaquina;
+  cartasAdicionalesJyCpu = cartasAdicionales;
 
   mostrarCartas(cartasJugador, "cartas-jugador");
   document.getElementById("tituloDineroJugador").style.display = "inline-block";
