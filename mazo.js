@@ -57,7 +57,7 @@ const Mazo = () => {
 
 const mostrarCartas = (cartas, contenedorId) => {
   const contenedor = document.getElementById(contenedorId);
-  contenedor.innerHTML = ""; // Limpiar cualquier contenido previo
+  contenedor.innerHTML = "";
   cartas.forEach(({ carta, palo, color }, index) => {
     const cartaElemento = document.createElement("div");
     cartaElemento.classList.add("carta");
@@ -91,33 +91,27 @@ seleccionarCartas = () => {
       if (!seleccionHabilitada) return;
       this.classList.toggle("seleccionada");
 
-      // Actualizar la lista de cartas seleccionadas
       const index = parseInt(this.getAttribute("data-index"));
 
       if (this.classList.contains("seleccionada")) {
-        cartasSeleccionadas.push(index); // Añadir la carta seleccionada (guardar índice)
+        cartasSeleccionadas.push(index);
       } else {
-        // Remover la carta si es deseleccionada (remover índice)
         cartasSeleccionadas = cartasSeleccionadas.filter((i) => i !== index);
       }
     });
   });
 };
 
-let cartasJugadorActualizadas = []; // Variable para guardar las cartas actualizadas del jugador
+let cartasJugadorActualizadas = [];
 
 document.getElementById("boton-cambiar").addEventListener("click", () => {
   if (cartasSeleccionadas.length === 0) {
     Swal.fire("No hay cartas seleccionadas");
-    return; // Salir si no hay cartas seleccionadas
+    return;
   }
 
-  console.log(cartasAdicionalesJyCpu);
-
-  console.log(cartasAdicionalesJyCpu.length);
-
   const nuevasCartas = cartasAdicionalesJyCpu.splice(
-    5,
+    0,
     cartasSeleccionadas.length
   );
 
@@ -126,7 +120,6 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
   const contenedor = document.getElementById("cartas-jugador");
   const cartasJugadorActuales = [...contenedor.querySelectorAll(".carta")];
 
-  // Inicializar cartasJugadorActualizadas con las cartas actuales (no seleccionadas)
   cartasJugadorActuales.forEach((carta, index) => {
     if (!cartasJugadorActualizadas[index]) {
       cartasJugadorActualizadas[index] = {
@@ -137,28 +130,22 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
     }
   });
 
-  // Reemplazar las cartas seleccionadas por las nuevas
   cartasSeleccionadas.forEach((index, i) => {
     const cartaActual = cartasJugadorActuales[index];
     const nuevaCarta = nuevasCartas[i];
 
-    // Actualizar visualmente la carta
     cartaActual.querySelector("div").textContent = nuevaCarta.carta;
     cartaActual.querySelector(".palo").textContent = nuevaCarta.palo;
 
-    // Remover la clase seleccionada de la carta
     cartaActual.classList.remove("seleccionada");
 
-    // Actualizar la carta en la variable global `cartasJugadorActualizadas`
     cartasJugadorActualizadas[index] = nuevaCarta;
   });
 
-  // Limpiar las cartas seleccionadas
   cartasSeleccionadas = [];
 
   seleccionHabilitada = false;
 
-  // Ocultar el botón "Cambiar" después de la acción
   document.getElementById("boton-cambiar").style.display = "none";
 
   document.getElementById("boton-NuevaApuesta").style.display = "inline-block";
@@ -166,7 +153,6 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
   document.getElementById("boton-ver-sin-apostar").style.display =
     "inline-block";
 
-  // Aquí ya tienes actualizadas todas las cartas del jugador (tanto las seleccionadas como las no seleccionadas)
   console.log(cartasJugadorActualizadas);
   const a = evaluarMano(cartasJugadorActualizadas);
   console.log(a);
