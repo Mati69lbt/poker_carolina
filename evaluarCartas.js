@@ -21,9 +21,11 @@ const evaluarMano = (mano) => {
     const paloEncontrado = palosArray.find((p) => p.emoji === carta.palo);
     const nombrePalo = paloEncontrado ? paloEncontrado.nombre : carta.palo;
     return `${carta.carta} - ${nombrePalo}`;
-  });
+  }); 
 
-  const valores = cartasConNombre.map((carta) => carta.split(" - ")[0]);
+  const valores = cartasConNombre
+    .map((carta) => valorCarta(carta))
+    .sort((a, b) => b - a); 
 
   const palos = cartasConNombre.map((carta) => carta.split(" - ")[1]);
 
@@ -95,6 +97,7 @@ const evaluarMano = (mano) => {
       juego: `Pierna de ${valorJugada}`,
       cartas: cartasConNombre,
       conteo,
+      valores,
     };
   if (maxValor === 2 && Object.keys(conteo).length === 3)
     return {
@@ -104,6 +107,7 @@ const evaluarMano = (mano) => {
         .join(" y ")}`,
       cartas: cartasConNombre,
       conteo,
+      valores,
     };
   if (maxValor === 2)
     return {
@@ -111,11 +115,13 @@ const evaluarMano = (mano) => {
       juego: `Par de ${valorJugada}`,
       cartas: cartasConNombre,
       conteo,
+      valores,
     };
   return {
     tipo: "Carta Alta",
     juego: "Carta Alta",
     cartas: cartasConNombre,
     conteo,
+    valores,
   };
 };

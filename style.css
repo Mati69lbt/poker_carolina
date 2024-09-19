@@ -38,8 +38,12 @@ body {
   font-size: 28px;
 }
 
-.carta.roja .palo {
+.carta.rojo .palo {
   color: red;
+}
+
+.carta .palo {
+  color: black;
 }
 
 .botones {

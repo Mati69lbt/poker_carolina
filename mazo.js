@@ -1,4 +1,4 @@
-// cspell: ignore boton, Swal, deseleccionada, seleccionHabilitada
+// cspell: ignore boton, Swal, deseleccionada, seleccionHabilitada, span_seleccionCartas, Póker
 
 const Mazo = () => {
   const cartas = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
@@ -62,11 +62,12 @@ const mostrarCartas = (cartas, contenedorId) => {
     const cartaElemento = document.createElement("div");
     cartaElemento.classList.add("carta");
 
-    cartaElemento.setAttribute("data-index", index);
-
     if (color === "rojo") {
-      cartaElemento.classList.add("roja");
+      cartaElemento.classList.add("rojo");
+    } else {
+      cartaElemento.classList.remove("rojo");
     }
+    cartaElemento.setAttribute("data-index", index);
 
     const numeroElemento = document.createElement("div");
     numeroElemento.textContent = carta;
@@ -105,8 +106,11 @@ seleccionarCartas = () => {
 let cartasJugadorActualizadas = [];
 
 document.getElementById("boton-cambiar").addEventListener("click", () => {
+  document.getElementById("span_seleccionCartas").style.display = "none";
   if (cartasSeleccionadas.length === 0) {
     Swal.fire("No hay cartas seleccionadas");
+    document.getElementById("span_seleccionCartas").style.display =
+      "inline-block";
     return;
   }
 
@@ -114,8 +118,6 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
     0,
     cartasSeleccionadas.length
   );
-
-  console.log(cartasAdicionalesJyCpu.length);
 
   const contenedor = document.getElementById("cartas-jugador");
   const cartasJugadorActuales = [...contenedor.querySelectorAll(".carta")];
@@ -147,13 +149,94 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
   seleccionHabilitada = false;
 
   document.getElementById("boton-cambiar").style.display = "none";
+  document.getElementById("boton-pasar").style.display = "none";
+  document.getElementById("boton-NuevaApuesta").style.display = "inline-block";
+  document.getElementById("boton-apostar").style.display = "none";
+  document.getElementById("boton-ver-sin-apostar").style.display =
+    "inline-block";
+});
 
+document.getElementById("boton-pasar").addEventListener("click", () => {
+  seleccionHabilitada = false;
+  document.getElementById("boton-cambiar").style.display = "none";
+  document.getElementById("span_seleccionCartas").style.display = "none";
+  document.getElementById("boton-pasar").style.display = "none";
   document.getElementById("boton-NuevaApuesta").style.display = "inline-block";
   document.getElementById("boton-apostar").style.display = "none";
   document.getElementById("boton-ver-sin-apostar").style.display =
     "inline-block";
 
-  console.log(cartasJugadorActualizadas);
-  const a = evaluarMano(cartasJugadorActualizadas);
-  console.log(a);
+  const manoCPU = evaluarMano(cartasCPU);
+
+  let { tipo, conteo, cartas: mano } = manoCPU;
+
+  let cartasQueQuedan = [];
+
+  if (tipo.includes("Par")) {
+    const pares = Object.keys(conteo).filter((valor) => conteo[valor] === 2);
+    if (pares.length === 2) {
+      tipo = "Doble Par";
+      cartasQueQuedan = mano.filter((carta) =>
+        pares.includes(carta.split(" - ")[0])
+      );
+    } else {
+      const valorClave = pares[0];
+      cartasQueQuedan = mano.filter(
+        (carta) => carta.split(" - ")[0] === valorClave
+      );
+    }
+  } else if (tipo.includes("Pierna")) {
+    const valorClave = Object.keys(conteo).find((valor) => conteo[valor] === 3);
+    cartasQueQuedan = mano.filter(
+      (carta) => carta.split(" - ")[0] === valorClave
+    );
+  } else if (tipo.includes("Póker")) {
+    const valorClave = Object.keys(conteo).find((valor) => conteo[valor] === 4);
+    cartasQueQuedan = mano.filter(
+      (carta) => carta.split(" - ")[0] === valorClave
+    );
+  } else if (tipo.includes("Full")) {
+    const valorPierna = Object.keys(conteo).find(
+      (valor) => conteo[valor] === 3
+    );
+    const valorPar = Object.keys(conteo).find((valor) => conteo[valor] === 2);
+    cartasQueQuedan = mano.filter(
+      (carta) =>
+        carta.split(" - ")[0] === valorPierna ||
+        carta.split(" - ")[0] === valorPar
+    );
+  } else if (tipo.includes("Carta Alta")) {
+    cartasQueQuedan = [];
+  } else {
+    cartasQueQuedan = mano;
+  }
+
+  cantCartasACambiar = 5 - cartasQueQuedan.length;
+
+  const nuevasCartas = cartasAdicionalesJyCpu.splice(0, cantCartasACambiar);
+
+  const palos = [
+    { nombre: "Corazón", emoji: "♥", color: "rojo" },
+    { nombre: "Trébol", emoji: "♣", color: "negro" },
+    { nombre: "Pica", emoji: "♠", color: "negro" },
+    { nombre: "Diamante", emoji: "♦", color: "rojo" },
+  ];
+
+  function transformarCartas(cartas) {
+    return cartas.map((carta) => {
+      const [valorCarta, nombrePalo] = carta.split(" - ");
+
+      const palo = palos.find((p) => p.nombre === nombrePalo);
+
+      return {
+        carta: valorCarta,
+        palo: palo.emoji,
+        color: palo.color,
+      };
+    });
+  }
+
+  const cartasCPU_Transformadas = transformarCartas(cartasQueQuedan);
+
+  cartasCPU_Nuevas = cartasCPU_Transformadas.concat(nuevasCartas);
 });

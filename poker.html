@@ -42,7 +42,7 @@
       <div id="cartas-jugador" class="cartasJugador"></div>
       <!-- ----------- -->
       <!-- Cartas CPU -->
-      <h3 id="titulo-cpu" style="display: none">Computadora</h3>
+      <h3 id="titulo-cpu" style="display: none">IA</h3>
       <div id="cartas-cpu" class="cartasCpu" style="display: none"></div>
       <!-- ----------- -->
       <!-- Formulario Apuestas -->
@@ -52,12 +52,32 @@
           <label for="option2">2</label>
         </div>
         <div>
+          <input type="radio" id="option3" name="option" value="3" />
+          <label for="option3">3</label>
+        </div>
+        <div>
+          <input type="radio" id="option4" name="option" value="4" />
+          <label for="option4">4</label>
+        </div>
+        <div>
           <input type="radio" id="option5" name="option" value="5" />
           <label for="option5">5</label>
         </div>
         <div>
+          <input type="radio" id="option6" name="option" value="6" />
+          <label for="option6">6</label>
+        </div>
+        <div>
+          <input type="radio" id="option7" name="option" value="7" />
+          <label for="option7">7</label>
+        </div>
+        <div>
           <input type="radio" id="option8" name="option" value="8" />
           <label for="option8">8</label>
+        </div>
+        <div>
+          <input type="radio" id="option9" name="option" value="9" />
+          <label for="option9">9</label>
         </div>
         <div>
           <input type="radio" id="option10" name="option" value="10" />
@@ -76,6 +96,7 @@
         <button id="boton-ver-sin-apostar" style="display: none">
           Ver sin Apostar
         </button>
+        <button id="boton-pasar" style="display: none">Pasar</button>
         <button id="boton-irse" style="display: none">Irse al maso</button>
         <button id="boton-verRespuestasCPU" style="display: none">
           Ver respuestas del CPU
@@ -90,6 +111,7 @@
         <button id="boton-ganador" style="display: none">¿Quien Gano?</button>
       </div>
       <button id="nuevaMano" style="display: none">Nueva Mano</button>
+      <button id="estadisticas" style="display: none">Estadísticas</button>
     </div>
     <script src="poker.js"></script>
     <script src="mazo.js"></script>
@@ -99,5 +121,6 @@
     <script src="cartasCPU.js"></script>
     <script src="segunda_Apuesta.js"></script>
     <script src="ganador.js"></script>
+    <script src="ver.js"></script>
   </body>
 </html>

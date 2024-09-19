@@ -3,23 +3,20 @@
 let cartasCPU_Nuevas = [];
 
 document.getElementById("boton-cambiar").addEventListener("click", () => {
-  document.getElementById("span_seleccionCartas").style.display = "none";
-
   const manoCPU = evaluarMano(cartasCPU);
 
   let { tipo, conteo, cartas: mano } = manoCPU;
 
   let cartasQueQuedan = [];
 
-  // Verificamos el tipo de juego para determinar cuántas cartas mantener
   if (tipo.includes("Par")) {
     const pares = Object.keys(conteo).filter((valor) => conteo[valor] === 2);
-    if (pares.length === 2) {     
+    if (pares.length === 2) {
       tipo = "Doble Par";
       cartasQueQuedan = mano.filter((carta) =>
         pares.includes(carta.split(" - ")[0])
       );
-    } else {      
+    } else {
       const valorClave = pares[0];
       cartasQueQuedan = mano.filter(
         (carta) => carta.split(" - ")[0] === valorClave
@@ -45,6 +42,8 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
         carta.split(" - ")[0] === valorPierna ||
         carta.split(" - ")[0] === valorPar
     );
+  } else if (tipo.includes("Carta Alta")) {
+    cartasQueQuedan = [];
   } else {
     cartasQueQuedan = mano;
   }
@@ -77,8 +76,4 @@ document.getElementById("boton-cambiar").addEventListener("click", () => {
   const cartasCPU_Transformadas = transformarCartas(cartasQueQuedan);
 
   cartasCPU_Nuevas = cartasCPU_Transformadas.concat(nuevasCartas);
-
-  const evaluarCartasNuevas = evaluarMano(cartasCPU_Nuevas);
-
-  console.log(evaluarCartasNuevas);
 });
